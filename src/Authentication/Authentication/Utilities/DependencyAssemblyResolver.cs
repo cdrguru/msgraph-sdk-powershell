@@ -34,7 +34,9 @@ namespace Microsoft.Graph.PowerShell.Authentication.Utilities
             { "System.Memory", new Version("4.0.1") },
             { "System.Buffers", new Version("4.0.2") },
             { "System.Numerics.Vectors", new Version("4.1.3") },
-            { "System.Net.Http.WinHttpHandler", new Version("6.0.0") }
+            { "System.Net.Http.WinHttpHandler", new Version("6.0.0") },
+            { "Microsoft.Identity.Client.Broker",  new Version("4.46.0-preview")},
+            { "Microsoft.Identity.Client.NativeInterop", new Version("0.12.0")}
         };
 
         /// <summary>

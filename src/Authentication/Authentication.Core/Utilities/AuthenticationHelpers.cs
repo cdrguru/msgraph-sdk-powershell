@@ -11,6 +11,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,7 +53,9 @@ namespace Microsoft.Graph.PowerShell.Authentication.Core.Utilities
             if (authContext is null)
                 throw new AuthenticationException(ErrorConstants.Message.MissingAuthContext);
 
-            var interactiveOptions = new InteractiveBrowserCredentialOptions
+            [DllImport("user32.dll")] static extern IntPtr GetForegroundWindow();
+            IntPtr parentWindowHandle = GetForegroundWindow();
+            var interactiveOptions = new InteractiveBrowserCredentialBrokerOptions(parentWindowHandle)
             {
                 ClientId = authContext.ClientId,
                 TenantId = authContext.TenantId,
